@@ -185,9 +185,7 @@ SENSOR_ENTITIES: tuple[VenstarSensorEntityDescription, ...] = (
         device_class=SensorDeviceClass.TEMPERATURE,
         state_class=SensorStateClass.MEASUREMENT,
         uom_fn=temperature_unit,
-        value_fn=lambda coordinator, sensor_name: round(
-            float(coordinator.client.get_sensor(sensor_name, "temp")), 1
-        ),
+        value_fn=lambda coordinator, sensor_name: coordinator.client.get_sensor(sensor_name, "temp"),
         name_fn=lambda sensor_name: f"{sensor_name.replace(' Temp', '')} Temperature",
     ),
     VenstarSensorEntityDescription(
